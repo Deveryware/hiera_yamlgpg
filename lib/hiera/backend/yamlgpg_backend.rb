@@ -90,8 +90,10 @@ class Hiera
                 elsif d.kind_of? Hash
                     d.each_key{|k| d[k] = decrypt_any(d[k])}
                     return d
+                elsif d.kind_of? Fixnum
+                    return d
                 else
-                    raise YamlgpgError, "Expected String, Array, or Hash, got #{d.class}"
+                    raise YamlgpgError, "Expected String, Array, Hash or Fixnum got #{d.class}"
                 end
             end
 
